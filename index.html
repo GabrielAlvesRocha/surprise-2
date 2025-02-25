@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartinha e Foto Polaroid</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Estrelas cadentes -->
+    <div class="cading-star"></div>
+    <div class="cading-star"></div>
+    <div class="cading-star"></div>
+    <div class="cading-star"></div>
+    <div class="cading-star"></div>
+
+    <!-- Sua carta -->
+    <div class="valentines-day-card">
+        <input id="open" type="checkbox">
+        <label class="open" for="open"></label>
+        <div class="card-front">
+            <div class="note">Clique aqui!</div>
+        </div>
+
+        <div class="card-inside">
+            <div class="text-one" id="text-one">Meu coração é teu...</div>
+            <div class="heart"></div>
+            <div class="smile"></div>
+            <div class="eyes"></div>
+
+            <!-- Foto Polaroid -->
+            <div class="polaroid">
+                <img src="/Img/fotinha.jpg" alt="Foto do casal">
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão de Play -->
+    <div class="play-button-container">
+        <button onclick="document.getElementById('bg-music').play()">🎵 Tocar Música!</button>
+    </div>
+
+    <!-- Música de fundo -->
+    <audio id="bg-music" autoplay loop>
+        <source src="/audio/love.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+        // Array com diferentes mensagens
+        const messages = [
+            "Meu coração é teu...",
+            "independente da distância...",
+            "do tempo...",
+            "Sempre estarei aqui...",
+            "PRA TE AMAR!!",
+        ];
+
+        // Função para mudar o texto automaticamente
+        function changeMessage() {
+            let index = 0;
+            const textElement = document.getElementById("text-one");
+
+            function updateText() {
+                textElement.textContent = messages[index];
+                index = (index + 1) % messages.length;
+            }
+
+            setInterval(updateText, 2000); // Troca a mensagem a cada 2 segundos
+        }
+
+        document.getElementById("open").addEventListener("change", function() {
+            if (this.checked) {
+                document.querySelector('.polaroid').classList.add('show');
+                changeMessage();
+            } else {
+                document.querySelector('.polaroid').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
